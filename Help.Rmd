@@ -1,0 +1,36 @@
+---
+title: "Help"
+author: "Javier Melo"
+date: "Tuesday, January 20, 2015"
+output: html_document
+---
+
+This App predicts the probability of acquiring esophagal cancer based on a simple logistic model using the [esoph][1] data set . This dataset is from a case-control study of (o)esophageal cancer in Ille-et-Vilaine, France. 
+
+**Usage**
+
+To predict the probability choose the corresponding radio button for each predictor: the age group, the daily alcohol consumption and the daily tobacco consumption. Then, press GO button. Probality is recalculated each time the go botton is pressed.
+ 
+ 
+**About the model**
+
+The logistic model used for the prediction is:
+
+```{r,eval=FALSE }
+model <- glm(cbind(ncases, ncontrols) ~ agegp + tobgp * alcgp,
+                            data = esoph, family = binomial())
+```
+
+Data in esoph dataset is shown in [gm/day] of alcohol and [gm/day] of tobacco. To make easier the data entry, it was used the following conversion factors:
+
+  Data Entry Units  |    Dataset Units
+------------- | -------------
+1 cigarrete  |  4 gm
+1 shot of alcohol 40% by vol  |  14 gm
+
+**Disclaimer**
+
+The purpose of this App is to show the usage of Shiny, but it is not intended to present the best model to predict esophagal cancer for real diagnostic purposes.  
+
+
+[1]:http://stat.ethz.ch/R-manual/R-devel/library/datasets/html/esoph.html
